@@ -1,0 +1,4 @@
+speechrecognition
+requests
+pydub
+pyttsx3
