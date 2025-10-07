@@ -1,15 +1,11 @@
-import os
+import config
 import subprocess
 from Voice import speak
 import time
+import os
 
 
-browser_path = [
-    "C:\\Users\\oleksii\\AppData\\Local\\Programs\\Opera GX\\opera.exe"
-    ]
-URL = [
-    "https://www.youtube.com"
-]
+
 
 def shutdown_computer():
     speak("Выключаю компьютер")
@@ -18,15 +14,16 @@ def shutdown_computer():
 
 
 def open_opera():
-    os.startfile(browser_path[0])
+    os.startfile(config.browser_path[0])
+    
     speak("Открываю оперу")
 
 def open_url_youtube():
-    subprocess.Popen([browser_path[0],URL[0]], bufsize=0)
+    subprocess.Popen([config.browser_path[0],config.URL[0]], bufsize=0)
     speak("Открываю youtube")
 
 def open_vsc():
-    os.startfile("C:\\Users\\oleksii\\AppData\\Local\\Programs\\Microsoft VS Code\\code.exe")
+    os.startfile(os.path.expandvars(r"%LOCALAPPDATA%\Programs\Microsoft VS Code\code.exe"))
     speak("Редактор кода открыт")
 
 def bot_odp():
@@ -38,3 +35,6 @@ def close_opera():
 
 def close_vsc():
     os.system("taskkill /f /im code.exe")
+
+def search_youtube(request):
+    subprocess.Popen([config.browser_path[0], request],bufsize=0)
